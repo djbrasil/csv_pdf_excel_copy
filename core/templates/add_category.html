@@ -1,0 +1,29 @@
+{% load static %} 
+{% include 'header.html' %} 
+{% include 'navigation.html' %} 
+<body> 
+    <div class="container">
+        <h2>categoria</h2> 
+        <div class="form-group">
+            <form method=post enctype="multipart/form-data">
+                {% csrf_token %}
+                <label>Adicionar Nome:</label>
+                <input type=text name="categoryname" placeholder="Nome..." class="form-control" required> 
+                <br>
+                <input type=submit name=submit value="Submit" class="btn btn-primary form-control">
+            </form>
+        </div> 
+    </div>
+</body> 
+
+{% ifequal error "no" %}
+<script>
+    alert('TEST ADD.');
+    window.location = ('{% url 'manage_category' %}');
+</script>
+{% endifequal %}
+{% ifequal error "yes" %}
+<script>
+    alert('Something Went Wrong. Please try again');
+</script>
+{% endifequal %}
